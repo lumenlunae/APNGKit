@@ -224,6 +224,13 @@ open class APNGImage: NSObject { // For ObjC compatibility
             }
         }
     }
+    
+    func write(to url: URL) throws {
+        var assembler = Assembler(url: url, frames: self.frames)
+        do {
+            try assembler?.save()
+        }
+    }
 }
 
 extension APNGImage {

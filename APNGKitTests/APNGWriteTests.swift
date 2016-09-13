@@ -38,7 +38,21 @@ class APNGWriteTests: XCTestCase {
     }
     
     func testUIImageWrite() {
+        let bundle = Bundle(for: type(of: self))
+        let imagePath = bundle.path(forResource: "demo", ofType: "png")!
+        let image = UIImage(contentsOfFile: imagePath)!
         
+        let newPNGImage = APNGImage(image: image)
+        
+        let dir = NSTemporaryDirectory() as NSString
+        let path = dir.appendingPathComponent("saved.png")
+        let fileURL = URL(fileURLWithPath: path)
+        try! newPNGImage?.write(to: fileURL)
+        
+        let imageExists = FileManager.default.fileExists(atPath: path)
+        let savedImage = UIImage(contentsOfFile: path)
+        XCTAssertTrue(imageExists, "Saved file should be created.")
+        XCTAssertNotNil(savedImage, "Saved image should be readable as image.")
     }
 }
 

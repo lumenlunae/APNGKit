@@ -48,6 +48,8 @@
 		4B7D4ED71B9559BF005C0598 /* filter_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4B7D4ED51B9559BF005C0598 /* filter_neon.S */; };
 		4B7D4ED91B955CBF005C0598 /* arm_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B7D4ED81B955CBF005C0598 /* arm_init.c */; };
 		4BF022041B94442800F00CDE /* APNGImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF022031B94442800F00CDE /* APNGImageViewTests.swift */; };
+		7BF0CBC11D87F123009A62F3 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF0CBC01D87F123009A62F3 /* Assembler.swift */; };
+		7BF0CBC31D87F153009A62F3 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF0CBC21D87F153009A62F3 /* Writer.swift */; };
 		7BF168CC1D8748D800D1BD27 /* APNGWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF168CB1D8748D800D1BD27 /* APNGWriteTests.swift */; };
 		D122B9261B96CC8E00CB4F26 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D122B9251B96CC8E00CB4F26 /* libz.tbd */; };
 		D127F6301B91D9FD0095832A /* APNGImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F62F1B91D9FD0095832A /* APNGImageTests.swift */; };
@@ -176,6 +178,8 @@
 		4B7D4ED51B9559BF005C0598 /* filter_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = filter_neon.S; sourceTree = "<group>"; };
 		4B7D4ED81B955CBF005C0598 /* arm_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arm_init.c; sourceTree = "<group>"; };
 		4BF022031B94442800F00CDE /* APNGImageViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNGImageViewTests.swift; sourceTree = "<group>"; };
+		7BF0CBC01D87F123009A62F3 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		7BF0CBC21D87F153009A62F3 /* Writer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		7BF168CB1D8748D800D1BD27 /* APNGWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNGWriteTests.swift; sourceTree = "<group>"; };
 		D122B9251B96CC8E00CB4F26 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D127F62F1B91D9FD0095832A /* APNGImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNGImageTests.swift; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 				4B21320F1B8EF4D500A39502 /* APNGImage.swift */,
 				D14B5B4F1B92DE4300F753E1 /* APNGImageCache.swift */,
 				D17398451B90A9B200913AEA /* APNGImageView.swift */,
+				7BF0CBC01D87F123009A62F3 /* Assembler.swift */,
+				7BF0CBC21D87F153009A62F3 /* Writer.swift */,
 			);
 			path = APNGKit;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 				4B7D4ED71B9559BF005C0598 /* filter_neon.S in Sources */,
 				D17398461B90A9B200913AEA /* APNGImageView.swift in Sources */,
 				4B6B69021B8EB33100C4868A /* pngrio.c in Sources */,
+				7BF0CBC31D87F153009A62F3 /* Writer.swift in Sources */,
 				D14B5B501B92DE4300F753E1 /* APNGImageCache.swift in Sources */,
 				4B7D4ED61B9559BF005C0598 /* filter_neon_intrinsics.c in Sources */,
 				4B6B68F61B8EB33100C4868A /* png.c in Sources */,
@@ -707,6 +714,7 @@
 				4B6B69051B8EB33100C4868A /* pngset.c in Sources */,
 				4B2132061B8EF20500A39502 /* Frame.swift in Sources */,
 				4B6B68FF1B8EB33100C4868A /* pngpread.c in Sources */,
+				7BF0CBC11D87F123009A62F3 /* Assembler.swift in Sources */,
 				4B21320C1B8EF44800A39502 /* Disassembler.swift in Sources */,
 				4B6B69151B8EB98300C4868A /* Reader.swift in Sources */,
 				4B6B68FB1B8EB33100C4868A /* pngget.c in Sources */,
