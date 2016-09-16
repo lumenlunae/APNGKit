@@ -37,19 +37,39 @@ class APNGWriteTests: XCTestCase {
         XCTAssertFalse(newPNGImage!.frames.first!.image!.isEmpty(), "This frame should not be an empty frame.")
     }
     
-    func testUIImageWrite() {
+    func testUIImageWriteSingleFrame() {
         let bundle = Bundle(for: type(of: self))
-        let imagePath = bundle.path(forResource: "demo", ofType: "png")!
+        let fileName = ("demo", "png")
+        let imagePath = bundle.path(forResource: fileName.0, ofType: fileName.1)!
         let image = UIImage(contentsOfFile: imagePath)!
         
         let newPNGImage = APNGImage(image: image)
         
         let dir = NSTemporaryDirectory() as NSString
-        let path = dir.appendingPathComponent("saved.png")
+        let path = dir.appendingPathComponent("\(fileName.0).\(fileName.1)")
         let fileURL = URL(fileURLWithPath: path)
         try! newPNGImage?.write(to: fileURL)
         
         let imageExists = FileManager.default.fileExists(atPath: path)
+        print("Path: \(path)")
+        let savedImage = UIImage(contentsOfFile: path)
+        XCTAssertTrue(imageExists, "Saved file should be created.")
+        XCTAssertNotNil(savedImage, "Saved image should be readable as image.")
+    }
+    
+    func testUIImageWriteMultipleFrames() {
+        let bundle = Bundle(for: type(of: self))
+        let fileName = ("spinfox", "apng")
+        let imagePath = bundle.path(forResource: fileName.0, ofType: fileName.1)!
+        let newPNGImage = APNGImage(contentsOfFile: imagePath)
+        
+        let dir = NSTemporaryDirectory() as NSString
+        let path = dir.appendingPathComponent("\(fileName.0).\(fileName.1)")
+        let fileURL = URL(fileURLWithPath: path)
+        try! newPNGImage?.write(to: fileURL)
+        
+        let imageExists = FileManager.default.fileExists(atPath: path)
+        print("Path: \(path)")
         let savedImage = UIImage(contentsOfFile: path)
         XCTAssertTrue(imageExists, "Saved file should be created.")
         XCTAssertNotNil(savedImage, "Saved image should be readable as image.")

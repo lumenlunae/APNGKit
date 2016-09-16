@@ -27,8 +27,8 @@
 import UIKit
 
 /**
- *  Reader for binary data.
- *  Put input data into an input stream and read it on requested.
+ *  Writer for binary data.
+ *  Put input data into an output stream and write it on requested.
  */
 struct Writer {
     
@@ -48,5 +48,9 @@ struct Writer {
     
     func endWriting() {
         stream.close()
+    }
+    
+    mutating func write(_ buffer: UnsafeMutablePointer<UInt8>, bytesCount: Int) {
+        stream.write(buffer, maxLength: bytesCount)
     }
 }
