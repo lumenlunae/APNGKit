@@ -24,19 +24,6 @@ class APNGWriteTests: XCTestCase {
         super.tearDown()
     }
     
-    func testUIImageRead() {
-        let bundle = Bundle(for: type(of: self))
-        let imagePath = bundle.path(forResource: "demo", ofType: "png")!
-        let image = UIImage(contentsOfFile: imagePath)!
-        
-        let newPNGImage = APNGImage(image: image)
-        XCTAssertNotNil(newPNGImage, "Normal image should be created.")
-        XCTAssertEqual(newPNGImage?.frames.count, 1, "There should be only one frame")
-        XCTAssertNotNil(newPNGImage?.frames.first?.image,"The image of frame should not be nil")
-        XCTAssertEqual(newPNGImage?.frames.first?.duration, TimeInterval.infinity, "And this frame lasts forever.")
-        XCTAssertFalse(newPNGImage!.frames.first!.image!.isEmpty(), "This frame should not be an empty frame.")
-    }
-    
     func testUIImageWriteSingleFrame() {
         let bundle = Bundle(for: type(of: self))
         let fileName = ("demo", "png")

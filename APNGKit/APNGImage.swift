@@ -107,6 +107,39 @@ open class APNGImage: NSObject { // For ObjC compatibility
     }
     
     /**
+     Creates and returns an apng image from an array of UIImage. This is a convenience initiatlizer for saving UIImage(s) as APNG images.
+     
+     - note: This method does not cache the image object.
+     
+     - parameter data: An array of UIImage.
+     
+     - returns: A new image object for the specified image, or nil if the method could not initialize the image from the specified data.
+     
+     */
+    public convenience init?(images: [UIImage], repeatCount: Int, firstFrameHidden hidden: Bool) {
+        // Rough initial way to get this working: 
+        // Create one APNGImage for each UIImage
+        // Then combine all the frames and return only
+        // the first APNG object
+        var first: APNGImage? = nil
+        var apngs = [APNGImage]()
+        for image in images {
+            if let apng = APNGImage(image: image) {
+                if first == nil {
+                    first = apng
+                }
+                apngs.append(apng)
+            }
+        }
+        if let first = first {
+            let frames = apngs.map { $0.frames[0] }
+            self.init(frames: frames, size: first.size, scale: first.scale, bitDepth: first.bitDepth, repeatCount: repeatCount, firstFrameHidden: hidden)
+            apngs.map { $0.frames = [] }
+        } else {
+            return nil
+        }
+    }
+    /**
     Returns the image object associated with the specified filename.
     This method looks in the APNGKit caches for an image object with the specified name and returns a new object with same data if it exists. 
     If a matching image object is not already in the cache, this method locates and loads the image data from disk, and then returns the resulting object. 

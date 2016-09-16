@@ -157,6 +157,33 @@ class APNGImageTests: XCTestCase {
         XCTAssertEqual(image?.frames.first?.duration, TimeInterval.infinity, "And this frame lasts forever.")
         XCTAssertFalse(image!.frames.first!.image!.isEmpty(), "This frame should not be an empty frame.")
     }
+    
+    func testUIImageRead() {
+        let bundle = Bundle(for: type(of: self))
+        let imagePath = bundle.path(forResource: "demo", ofType: "png")!
+        let image = UIImage(contentsOfFile: imagePath)!
+        
+        let newPNGImage = APNGImage(image: image)
+        XCTAssertNotNil(newPNGImage, "Normal image should be created.")
+        XCTAssertEqual(newPNGImage?.frames.count, 1, "There should be only one frame")
+        XCTAssertNotNil(newPNGImage?.frames.first?.image,"The image of frame should not be nil")
+        XCTAssertEqual(newPNGImage?.frames.first?.duration, TimeInterval.infinity, "And this frame lasts forever.")
+        XCTAssertFalse(newPNGImage!.frames.first!.image!.isEmpty(), "This frame should not be an empty frame.")
+    }
+    
+    func testUIImageSequence() {
+        let bundle = Bundle(for: type(of: self))
+        let imagePath = bundle.path(forResource: "demo", ofType: "png")!
+        let image = UIImage(contentsOfFile: imagePath)!
+        let image2 = UIImage(contentsOfFile: imagePath)!
+        let image3 = UIImage(contentsOfFile: imagePath)!
+        let newPNGImage = APNGImage(images: [image, image2, image3], repeatCount: 0, firstFrameHidden: false)
+        
+        XCTAssertNotNil(newPNGImage, "Normal image should be created.")
+        XCTAssertEqual(newPNGImage?.frames.count, 3, "There should be three frames")
+        XCTAssertNotNil(newPNGImage?.frames.first?.image,"The image of frame should not be nil")
+        XCTAssertFalse(newPNGImage!.frames.first!.image!.isEmpty(), "This frame should not be an empty frame.")
+    }
 }
 
 extension UIImage {
