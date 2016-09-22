@@ -258,7 +258,7 @@ open class APNGImage: NSObject { // For ObjC compatibility
         }
     }
     
-    func write(to url: URL) throws {
+    public func write(to url: URL) throws {
         var assembler = Assembler(url: url, apng: self)
         do {
             try assembler?.save()
