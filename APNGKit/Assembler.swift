@@ -95,8 +95,8 @@ struct Assembler {
         
         png_set_write_fn(pngPointer, &writer, writeData, nil)
         
-        let width = UInt32(self.image.size.width)
-        let height = UInt32(self.image.size.height)
+        let width = UInt32(self.image.size.width * self.image.scale)
+        let height = UInt32(self.image.size.height * self.image.scale)
         let bitDepth = Int32(self.image.bitDepth)
         // TODO
         let colorType: Int32 = PNG_COLOR_TYPE_RGB_ALPHA
