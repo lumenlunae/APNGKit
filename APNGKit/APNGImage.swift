@@ -133,8 +133,11 @@ open class APNGImage: NSObject { // For ObjC compatibility
         }
         if let first = first {
             let frames = apngs.map { $0.frames[0] }
-            self.init(frames: frames, size: first.size, scale: first.scale, bitDepth: first.bitDepth, repeatCount: repeatCount, firstFrameHidden: hidden)
-            apngs.map { $0.frames = [] }
+            // size for the frame turns into points, 
+            // so need to convert back
+            let size = CGSize(width: first.size.width * first.scale, height: first.size.height * first.scale)
+            self.init(frames: frames, size: size, scale: first.scale, bitDepth: first.bitDepth, repeatCount: repeatCount, firstFrameHidden: hidden)
+            apngs.forEach { $0.frames = [] }
         } else {
             return nil
         }
