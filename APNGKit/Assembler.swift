@@ -116,7 +116,7 @@ struct Assembler {
         // firstFrameHidden?
         for i in 0..<self.image.frames.count {
             var frame = self.image.frames[i]
-            var frameBytes = frame.bytes
+            //var frameBytes = frame.bytes
             
             let offsetX: UInt32 = 0
             let offsetY: UInt32 = 0
@@ -124,15 +124,14 @@ struct Assembler {
             let frameHeight = height
             let delayNum: UInt16 = 100
             let delayDen: UInt16 = 100
-            var disposeOP: UInt8 = 0
-            var blendOP: UInt8 = 0
+            let disposeOP: UInt8 = 0
+            let blendOP: UInt8 = 0
             
             frame.byteRows.withUnsafeMutableBufferPointer({ buffer in
                 _ = withUnsafeMutablePointer(to: &buffer)  { (boundBuffer) in
                     boundBuffer.withMemoryRebound(to: (UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>).self, capacity: MemoryLayout<(UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>)>.size) { (rows) in
                         png_set_rows(pngPointer, infoPointer, rows.pointee)
                         png_write_frame_head(pngPointer, infoPointer, rows.pointee, frameWidth, frameHeight, offsetX, offsetY, delayNum, delayDen, disposeOP, blendOP)
-                        
                     }
                 }
             })
